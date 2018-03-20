@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>object함수로 생성자 만들기(사용자)</title>
+</head>
+<body>
+    <h2>JavaScript Objects</h2>
+    
+    <p id="demo"></p>
+    
+    <script>
+    // Constructor function for Person objects
+    function Person(firstName,lastName,age,eyeColor) {
+        this.firstName = firstName;//Sally
+        this.lastName = lastName;//Rally
+        this.age = age;//48
+        this.eyeColor = eyeColor;//green
+        this.changeName = function (name) {
+            this.lastName = name;//Doe
+        }
+    }
+    // Create a Person object
+    var myMother = new Person("Sally","Rally",48,"green");
+    
+    myMother.changeName("Doe");
+    document.getElementById("demo").innerHTML =
+    "My mother's last name is " + myMother.lastName;
+    </script>
+</body>
+</html>

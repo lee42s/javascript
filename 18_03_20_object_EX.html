@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>객체</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        // var cody={
+        //     living:true,
+        //     getGender:function(){
+        //         return cody.gender;
+        //     }
+        // };
+        var person = new Object();
+        var cody =person;
+        cody.age=33;
+        cody.living=true;
+        cody['gender']='male';
+        var el= document.getElementById('demo');
+        el.textContent='living'+'='+cody.living+', age'+'='+cody.age+', gender'+'='+"'"+cody.gender+"'";
+        console.log(cody);
+        // console.log(cody.getGender());
+    </script>
+</body>
+</html>

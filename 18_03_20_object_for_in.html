@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>object</title>
+</head>
+<body>
+    <p id="demo"></p>
+    
+    <script>
+    var txt = "";
+    var person = {fname:"John", lname:"Doe", age:25}; 
+    for (var x in person) {//x는fname lname age 키워드 을 가지고있다 
+        txt += person[x] + " ";
+    }
+    document.getElementById("demo").innerHTML = txt;
+    //Prototype Properties(dt.__proto__)
+    //JavaScript 객체는 프로토타입의 properties(속성)을 상속받습니다.
+    //delete 키워드는 상속 된 properties(속성)을 삭제하지 않지만 prototype property(속성)을 삭제하면 프로토타입에서 상속 된 모든 객체에 영향을 줍니다.
+    </script>
+</body>
+</html>
