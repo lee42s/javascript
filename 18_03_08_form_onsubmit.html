@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <form action="#" id="form">
+            <input type="text" name="text">
+            <input type="submit" value="검색">
+        </form>
+        <footer>자바스크립트</footer>
+        <p id="output"></p>  
+    </section>
+  
+    <script>
+        var formEl = document.getElementById('form').onsubmit=function(){
+            var search =document.getElementById('form').text.value;
+            document.getElementById('output').textContent ='\''+search+'검색중입니다...\'';
+            return false;//리플레쉬 해결
+        };
+    </script>
+</body>
+</html>

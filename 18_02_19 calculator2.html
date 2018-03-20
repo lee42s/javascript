@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> calculator</title>
+</head>
+<body>
+    <h1>계산기</h1>
+    <p id='display'>_</p>
+    <button onClick='getVal(1)'>1</button>
+    <button onClick='getVal(2)'>2</button>
+    <button onClick='getVal(3)'>3</button>
+    <button onClick='getVal(4)'>4</button>
+    <button onClick='getVal(5)'>5</button>
+    <button onClick='getVal(6)'>6</button>
+    <button onClick='getVal(7)'>7</button>
+    <button onClick='getVal(8)'>8</button>
+    <button onClick='getVal(9)'>9</button>
+    <button onClick='getStr("+")'>+</button>
+    <button onClick='getStr("-")'>-</button>
+    <button onClick='getStr("*")'>*</button>
+    <button onClick='getStr("/")'>/</button>
+    <button onClick='getStr("=")' >=</button>
+    <button onClick='Ac("C")' >AC</button>
+    
+    <script>
+        var a,b,count=0,text="",oper;
+        
+        function showDisplay(val){
+            var disp = document.getElementById('display');
+            disp.textContent = val;
+        }
+        function getVal(val){
+            if(count == 0){
+                a = val;
+                count ++;
+            } else{
+                b = val;
+            }     
+             text += val;
+             showDisplay(text);
+        }
+        function getStr(val){
+            if(val === "="){
+              var rest = calcPlus(a,b);
+                showDisplay(rest);
+            }else{
+                oper = val;
+                text += val;
+                showDisplay(text);
+            }
+        }
+        function Ac(val){
+             if(val === "C"){
+                a=null;
+                b=null;
+                text=null;
+                count=0;
+                document.getElementById('display').textContent='_';
+            }
+        }
+        function calcPlus(a,b){
+            var rest;
+            if(oper ==='+'){
+                rest = a + b;
+            }else if (oper === '-'){
+                rest = a - b;
+            }
+            else if (oper === '*'){
+                rest = a * b;
+            }
+            else if (oper === '*'){
+                rest = a * b;
+            }
+            else if (oper === '/'){
+                rest = a / b;
+            }
+            return rest;
+        }
+    </script>
+</body>
+</html>

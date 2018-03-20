@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <script>
+        //변수 호이스팅:변수의 정의가 그 범위에 따라 선언과 할당으로 분리되는 것을 의미합니다. 
+        x = 5; // x에 5을 할당또 할당은 코드 위에서만 할당할수있다.
+        elem = document.getElementById("demo"); // 
+        elem.innerHTML = x;                     // 
+        var x; // x선언 부분만 호이스팅
+        var d = 5;  // 선언과 할당
+        elem = document.getElementById("demo1");            // Find an element 
+        elem.innerHTML = "x is " + d + " and y is " + s;    // Display x and y
+        var s = 7;  // 선언과 할당 을 할경우 에러발생
+    </script>
+</body>
+</html>

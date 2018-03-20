@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Objects</title>
+    </head>
+    <body>
+       <p id="demo"></p>
+
+        <script>
+            //속성과 메서드가 없는값은 리터럴 이라고 한다.또는(원시값)
+        var car ={};//객체생성(값이 없다)
+        var newcar = new Object();//객체생성(값이 있다)
+        car = {type:"Fiat", model:"500", color:"white",myFn :function() { console.log('type')}};
+        document.getElementById("demo").innerHTML = car.type;
+        </script>
+    </body>
+</html>

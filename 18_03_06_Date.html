@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body onload="Time()">
+    <p id="demo"></p>
+    <script>
+        var timestamp = Number(window.prompt("숫자을 입력하세요"));
+        // var timestamp = new Date().getHours();
+       var el =document.getElementById('demo');
+       function Time(){
+           if(timestamp >= 19 && timestamp <= 21 ){
+                el.textContent='도시락 30% 할인'
+           }else if(timestamp === 9 || timestamp ===15 ){
+                el.textContent='도시락 하나사면 하나꽁짜'
+           }else{
+                el.textContent='도시락 사세요'
+           }
+       }
+    </script>
+</body>
+</html>

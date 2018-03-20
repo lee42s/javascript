@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+   <p id="question1">비교할숫자을 입력하세요</p>
+   <p id="result">답:</p>
+    <script>
+        var no1,no2,res,obj;
+        function compare(p1,p2){
+            if(p1>p2){
+                res =-1;
+            }else if(p1<p2){
+                res=1;
+            }else{
+                res=0;
+            }return res;
+        }
+        function stringToInt(s){
+            res = Number(s); 
+            return res;
+        }
+        obj =document.getElementById("result")
+        no1= window.prompt("비교할첫숫자을 입력하세요")
+        no2= window.prompt("비교할두번쨰숫자을 입력하세요")
+        no1 =stringToInt(no1);
+        no2 =stringToInt(no2);
+        res = compare(no1,no2);
+        
+        if (res === -1){
+            message =no1+"은"+no2+"보다작다."
+        }else if(res === 1){
+            message =no1+"은"+no2+"보다크다."
+        }else{
+            message =no1+"과"+no2+"는(은)같다."
+        }
+        obj.textContent =message; 
+    </script>
+</body>
+</html>

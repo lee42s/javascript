@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="list"></div>
+    <script>
+        var addZero =function(num,digit){
+            var numString =String(num);
+            while(numString.length<digit){
+                numString='0'+numString;
+            }
+            return numString;
+        }
+        var songs=[
+            '인스타그램',
+            '꽃길',
+            '향수'
+        ];
+        for(var i =0;i<songs.length; i++){
+            var paragraph = document.createElement('P');
+            paragraph.textContent = addZero(i + 1, 2)+ '.' +songs[i];
+            document.getElementById('list').appendChild(paragraph);
+        }
+    </script>
+</body>
+</html>

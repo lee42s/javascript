@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>geolocation(위도 와 경도가져오기)</title>
+    </head>
+    <body onload="">
+        <button onclick="checkLoc()">경위도확인</button>
+        <p id="res"></p>
+        <script>
+         function checkLoc(){
+         //@(\d+.\d+),(\d+.\d+)
+         //            https://www.google.com/maps/search/%ED%95%A0%EB%A8%B8%EB%8B%88%EC%88%9C%EB%8C%80%EA%B5%AD/@37.4821524,127.1666316,57195m/data=!3m2!1e3!4b1?hl=ko
+            var url = prompt("주소을 입력해주세요.");
+            var myReg=/@(\d+.\d+),(\d+.\d+)/g;
+//            console.log(myReg.exec(url));//어떤문자패턴을 배열형태로 값져와 일치하는 문자에 값만을 널어준다
+            var myArr= myReg.exec(url);
+            if(myArr){
+                var text ="";
+                text +="위도"+myArr[1];
+                text +=",경도"+myArr[2];
+                var El=document.getElementById('res');
+                El.textContent=text;
+            } else{
+                 var El=document.getElementById('res');
+                El.innerHTML=' 잘못된 주소 입니다.<br>다시입력해주세요';
+            }  
+         }
+        </script>
+    </body>
+</html>

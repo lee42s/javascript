@@ -1,0 +1,118 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body onload="init()">
+    <button type="button" onclick="getWinner()" id="demo">추첨</button>
+    <script>
+        // 초기화
+        var prizeObj = [{
+            prod: "자동차",
+            count: 2
+        }, {
+            prod: "세탁기",
+            count: 2
+        }, {
+            prod: "청소기",
+            count: 2
+        }, {
+            prod: "드라이기",
+            count: 2
+        }]
+        var totalCases = 10; // 총 경우의 수
+        var winCase; // 총 상품건수
+        var loseCase; // 비당첨자의 수 = 총 응모자 - 당첨자를 뺀 수
+
+        function init() {
+            winCase = getTotalPrizeNum();
+            loseCase = totalCases - winCase;
+        }
+
+        // 1부터 n까지 임의의 정수를 반환하는 랜덤함수
+        function rand(n) {
+            return Math.floor(Math.random() * n + 1);
+        }
+
+        // 현재시점의 총 상품건수를 반환한다.
+        function getTotalPrizeNum() {
+            var total = 0;
+            for (var i = 0; i < prizeObj.length; i++) {
+                total += prizeObj[i]["count"];
+            }
+            return total;
+        }
+
+        // 당첨된 상품을 선택한다.
+        function selectPrize(n) {
+            var idx = 0;
+            var num = 0;
+            for (var i = 0; i < prizeObj.length; i++) {
+                num += prizeObj[i].count;
+                if (n <= num && n > 0) {
+                    idx = i;
+                    break;
+                }
+            }
+            return idx;
+        }
+
+
+        // 상품수 감소 상품이 남아 있지 않으면 해당 상품을 경품에서 제외한다.
+        function delProd(n) {
+            var idx = selectPrize(n);
+            var cnt = prizeObj[idx]["count"];
+            var prod = prizeObj[idx]["prod"];
+            cnt--;
+            if (cnt < 1) {
+                prizeObj.splice(idx, 1);
+            } else {
+                prizeObj[idx]["count"] = cnt;
+            }
+            winCase = getTotalPrizeNum();
+            countTotalCases();
+            return prod;
+        }
+
+        // 비당첨자수 감소
+        function delTotalPlayer() {
+            loseCase--;
+            countTotalCases();
+            return
+        }
+
+        // 잔여 추첨건수 업데이트
+        function countTotalCases() {
+            totalCases = winCase + loseCase;
+            endEvent();
+            return;
+        }
+
+        // 당첨자와 미당첨자를 구분한다.
+        function getWinner() {
+            var randNum = rand(totalCases);
+            if (randNum <= winCase) {
+                var prod = delProd(randNum);
+                alert(prod + "에 당첨되셨습니다.");
+            } else {
+                delTotalPlayer();
+                alert("참여해 주셔서 감사합니다.");
+            }
+            return;
+        }
+
+        // 추첨 종료
+        function endEvent() {
+            if(totalCases == 0) {
+                var x = document.getElementById('demo')
+                x.disabled = true;
+                x.textContent = "추첨이 모두 끝났습니다.";
+            }
+        }
+    </script>
+</body>
+</html>

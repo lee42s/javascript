@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>monster</title>
+    </head>
+    <body>
+        <script>
+            var enemy=100;
+            var attack;
+            function attack(){
+                while(enemy>0){
+                    attack=Math.floor(Math.random()*10)+1;
+                    enemy = enemy-attack;
+                }
+            }
+            function play(){
+                window.alert('대전시작');
+                attack();
+                console.log(enemy);
+                window.alert('몬스터을 물리쳤다.와~');
+            }
+            
+        </script>
+    </body>
+</html>

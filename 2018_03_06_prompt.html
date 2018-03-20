@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>alert</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        var El =  document.getElementById('demo');
+        var exit =true;
+        var number = Math.floor(Math.random()*100+1);
+        function Randomgame(){   
+            var myans=Number(window.prompt('1~100의숫자을 입력하세요'));
+            if(myans === number){
+                El.textContent='맞다';
+                exit =false;
+            }else if(myans > number){
+                var myans=window.prompt('크다');
+                El.textContent='크다';
+                exit =true;
+            }else if(myans < number){
+                var myans=window.prompt('작다');
+                exit =true;
+                El.textContent='작다';       
+            }
+        }
+        while(exit){
+            Randomgame()
+        }   
+    </script>
+</body>
+</html>

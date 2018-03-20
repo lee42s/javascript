@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body onload="">
+    <button type="button" onclick="raffle()" id="demo">추첨</button>
+    <script>
+        var itemObj = [{
+            prod: "자동차",
+            count: 1
+        }, {
+            prod: "세탁기",
+            count: 2
+        }, {
+            prod: "청소기",
+            count: 5
+        }, {
+            prod: "드라이기",
+            count: 10
+        }];
+        var participator=50;//참여자
+        var Winner = 8;//당첨자
+        var loser;//비당첨자 
+        var raffle = function(){
+            // Participator_end();
+            select_goods();
+            function select_goods(){
+                var total = 0;
+                for(var j=0;j<=itemObj.length; j++){
+                    total = itemObj[j].count;
+                }
+                return total;
+            }
+            // function Participator_end(){
+            //     for(var i =1; i<=participator; i++){   
+            //         console.log(i);
+            //         if(i==participator){
+            //             alert('추점이 모두 끝났습니다.');
+            //         }
+            //     }
+            // }
+           
+        }
+    </script>
+</body>
+</html>

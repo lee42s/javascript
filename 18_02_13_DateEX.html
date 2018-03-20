@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DateEX</title>
+</head>
+<body>
+   <p id="question">방문시간:<span id="hour1"></span></p>
+   <p id="bonus"></p>
+    <script>
+//        var hour =new Date().getHours();
+        var hour = 9;
+        if (hour >= 19 && hour < 21 ){
+            hour1.textContent = hour;
+            bonus.textContent="하나 issue3수정issue2"
+        }else if(hour === 9 || hour === 15){
+             hour1.textContent = hour;
+             bonus.textContent="30% 할인"
+        }else{
+            hour1.textContent = hour;
+            bonus.textContent="나머지 시간에 사세요"
+        }
+    </script>
+</body>
+</html>

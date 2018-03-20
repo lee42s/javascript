@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>JavaScript</h1>
+
+        <p id="question">당신이 좋아하는 우산색은?</p>
+        <p>답:<span id="ans">응답대기상</span></p>
+
+        <script>
+           var que =document.getElementById("question").textContent;
+           var pormpt =window.prompt(que);
+           var text = "우산을 드립니다."
+           if(pormpt ==='검정' || pormpt === '흰색' || pormpt ==='노랑' || pormpt==='레드'){
+               ans.textContent = pormpt+""+text;
+           }else{
+               ans.textContent ="원하시는 우산색이 없습니다."
+           }
+        </script>
+    </body>
+</html> 

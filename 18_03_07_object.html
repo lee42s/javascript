@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>객체의사용</title>
+    <style>
+        .cosoon{
+            background-color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var mytodo =[{
+            'todo':'디자인',
+            'due':'11/20',
+            'priority':1,
+            'memo':'사진변경'
+            },{
+            'todo':'비행기표',
+            'due':'11/22',
+            'priority':3,
+            'memo':''
+            },{
+            'todo':'책반납',
+            'due':'12/1',
+            'priority':2,
+            'memo':'다른책빌리기'
+            },{
+            'todo':'친구만나기',
+            'due':'3/8',
+            'priority':2,
+            'memo':'커피 사달라고 하기'
+            },{
+            'todo':'도서반납',
+            'due':'3/9',
+            'priority':3,
+            'memo':'징기스칸의후예'
+            },
+            ]
+        var mytodotable="";
+        mytodotable += "<table>";
+        mytodotable += "<tr>";
+        mytodotable += "<th>순번</th><th>Todo</th><th>Due</th><th>LeftDay</th><th>Prioriy</th><th>Memo</th>";
+        mytodotable += "</tr>" ;
+        var mylen = mytodo.length;
+        for(var i = 0; i<mylen; i++){
+            var dayLfeftres =LeftDay(i);
+            if(mytodo[i]['priority']===1 || dayLfeftres==='곧'){
+                mytodotable +="<tr class ='cosoon'>";
+            }else{
+                mytodotable +="<tr>";
+            }
+            mytodotable += "<td>"+(i+1)+"</td>";
+            mytodotable += "<td>"+mytodo[i]['todo']+"</td>";
+            mytodotable += "<td>"+mytodo[i]['due']+"</td>";
+            mytodotable += "<td>"+dayLfeftres+"</td>";
+            mytodotable += "<td>"+mytodo[i]['priority']+"</td>";
+            mytodotable += "<td>"+mytodo[i]['memo']+"</td>";
+            mytodotable += "</tr>" ;
+        }
+        mytodotable += "</table>"
+        var bodyElem = document.getElementsByTagName('body')[0];
+        var dispElem= document.createElement('P');
+        // var text =document.createTextNode(mytodotable); 
+        // dispElem.appendChild(text);
+        dispElem.innerHTML = mytodotable;
+        bodyElem.appendChild(dispElem);
+
+        function LeftDay(leftday){
+            var curDay,curMise,day,month,dueDay,dueMise,leftMise,idx, dustr;
+            curDay = new Date();
+            curMise =curDay.getTime();
+            dustr=mytodo[leftday]['due'];
+            idx =dustr.indexOf('/')
+            month=Number(dustr.slice(0,idx)-1);
+            day=dustr.slice(idx+1,dustr.length);
+            dueDay = new Date(2018,month,day);
+            dueMise =dueDay.getTime();
+            leftDays =Math.floor((dueMise-curMise)/(1000*60*60*24));
+            leftDays= (leftDays === 0)?"곧":leftDays;
+            return leftDays;
+        }
+    </script>
+</body>
+</html>
