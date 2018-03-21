@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        원주율은
+        <span><script>document.write(Math.PI);</script></span>
+    </p>
+    <p>
+        그냥버리면 
+        <span><script>document.write(Math.floor(Math.PI));</script></span>
+    </p>
+    <p>소수점 두 번쨰 자리에서 버리면<span id="output"></span>이다.</p>
+  <script>
+      var point =function(num,digit){
+          var time =Math.pow(10,digit);//pow 제곱근
+          return Math.floor(num*time)/time;
+      }
+      console.log(point(3,10));
+      document.getElementById('output').textContent=point(Math.PI,2);
+  </script>
+</body>
+</html>

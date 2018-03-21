@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul {
+            padding-left: 0;
+            list-style-type: none;
+        }
+        li{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+  <ul>
+      <li><span id="myHour"></span></li>
+      <il><input type="range" id="myHour_range" min='0' max='23' step='1' onchange="formControl.changeRange()"></il>
+      <li><span id="myMin"></span></li>
+      <il><input type="range" id="myMin_range" min='0' max='59' step='1' onchange="formControl.changeRange()"></il>
+      <il><input type="submit" id="myAlarm" onclick="formControl.countTime()" value="알람설정"></il>
+  </ul>
+  <script>
+    var alarmSet;
+    var formControl ={
+        myHour_range:document.getElementById("myHour_range"),
+        myHour:document.getElementById("myHour"),
+        myMin:document.getElementById('myMin'),
+        myMin_range:document.getElementById('myMin_range'),
+        init:function(){
+            formControl.myHour_range.style.width = 300+'px';
+            formControl.myMin_range.style.width = 300+'px';
+            var now_time = this.getTime()
+            this.setTime(now_time.getHours(),now_time.getMinutes());
+        },
+        getTime:function(){
+            var now =new Date();
+            return now
+        },
+        setTime:function(get_hour,get_min){
+            this.myHour_range.value =get_hour;
+            this.myHour.textContent=get_hour;
+            this.myMin_range.value =get_min;
+            this.myMin.textContent=get_min;
+        },
+        changeRange:function(){
+            var changed_hour = this.myHour_range.value;
+            var changed_min = this.myMin_range.value;
+            this.setTime(changed_hour,changed_min);
+        },
+        myAlarm:function(){
+            var matchH = Number(this.myHour_range.value);
+            var matchM = Number(this.myMin_range.value);
+            var now_time = this.getTime();
+            var get_h =now_time.getHours();
+            var get_m =now_time.getMinutes();
+            if(matchH===get_h && matchM===get_m && alarmSet===true){
+                alert('일어나세요');
+                setAlarm(false);
+            }
+        },
+        countTime:function(){ 
+            setAlarm(true);
+            if(alarmSet===true){
+               var alarmTimer=setInterval("formControl.myAlarm()",1000)
+            }
+        }
+    }
+    function setAlarm(Ch){ 
+        alarmSet = Ch;  
+    }
+    window.onload = function(){
+        formControl.init();
+    }
+  </script>
+</body>
+</html>

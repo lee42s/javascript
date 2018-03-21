@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <pre>
+        동적 속성 덕분에 객체 수정이 가능하다.
+    </pre>
+    <script>
+        String.argumentedPropertirs=[];
+        if(!String.prototype.trimIT){//prototype은 trimIT 추가하나다.
+            String.prototype.trimIT = function(){
+                return this.replace(/^\s+|\$/g,'')//this은 자기자신을 호출한 객체 그러므로 this은String이다. \s:문자 \s+:모든문자^:시작
+            }
+            String.argumentedPropertirs.push('trimIT');
+        }
+        var myString =' trim me';
+        console.log(myString.trimIT());
+        console.log(myString instanceof trimIT);
+    </script>
+</body>
+</html>
