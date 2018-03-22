@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button type="button" onclick='displayCookies()'>Display All Cookies</button>
+    
+    <button type="button" onclick='document.cookie="firstname=lee42s;expires=Wed, 18 Dec 2023 12:00:00 GMT"'>Create Cookie 1</button>
+    
+    <button type="button" onclick='document.cookie="lastname=ddsa;expires=Wed, 18 Dec 2023 12:00:00 GMT"'>Create Cookie 2</button>
+    
+    <button type="button" onclick='document.cookie="firstname=;expires=Wed; 01 Jan 1970"'>Delete Cookie 1</button>
+    
+    <button type="button" onclick='document.cookie="lastname=;expires=Wed 01 Jan 1970"'>Delete Cookie 2</button>
+    
+    
+    
+    <script>
+    
+    function displayCookies() {
+    
+      var fname = getCookie("firstname");
+    
+      if (fname == null) {
+    
+        fname = "";
+    
+      }
+    
+      if (fname != "") {
+    
+        fname = "firstname=" + fname;
+    
+      }
+    
+      var lname = getCookie("lastname");
+    
+      if (lname == null) {
+    
+        lname = "";
+    
+      }
+    
+      if (lname != "") {
+    
+        lname = "lastname=" + lname;
+    
+      }
+    
+      alert(fname + " " + lname);
+    
+    }
+    
+    
+    
+    function getCookie(name) {
+    
+      var nameEQ = name + "=";
+    
+      //alert(document.cookie);
+    
+      var ca = document.cookie.split(';');
+    
+      for (var i = 0; i < ca.length; i++) {
+    
+        var c = ca[i];
+    
+        while (c.charAt(0) == ' ') c = c.substring(1);
+    
+        if (c.indexOf(nameEQ) != -1) return c.substring(nameEQ.length, c.length);
+    
+      }
+    
+      return null;
+    
+    }
+    
+    </script>
+</body>
+</html>
