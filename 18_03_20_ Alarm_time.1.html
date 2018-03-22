@@ -17,14 +17,14 @@
 </head>
 <body>
   <ul>
-      <li><span id="myHour"></span></li>
-      <il><input type="range" id="myHour_range" min='0' max='23' step='1' onchange="formControl.changeRange()"></il>
-      <li><span id="myMin"></span></li>
+      <li>시간: <span id="myHour"></span></li>
+      <il></il><input type="range" id="myHour_range" min='0' max='23' step='1' onchange="formControl.changeRange()"></il>
+      <li>분: <span id="myMin"></span></li>
       <il><input type="range" id="myMin_range" min='0' max='59' step='1' onchange="formControl.changeRange()"></il>
       <il><input type="submit" id="myAlarm" onclick="formControl.countTime()" value="알람설정"></il>
   </ul>
   <script>
-    var alarmSet;
+    var alarmSet,alarmTimer;
     var formControl ={
         myHour_range:document.getElementById("myHour_range"),
         myHour:document.getElementById("myHour"),
@@ -58,14 +58,18 @@
             var get_h =now_time.getHours();
             var get_m =now_time.getMinutes();
             if(matchH===get_h && matchM===get_m && alarmSet===true){
-                alert('일어나세요');
+                alert('쉬는시간입니다.');
                 setAlarm(false);
+            }else if(alarmSet===false){
+                clearInterval(alarmTimer);
+                alert('쉬는시간이종료되었습니다.')
             }
         },
         countTime:function(){ 
             setAlarm(true);
             if(alarmSet===true){
-               var alarmTimer=setInterval("formControl.myAlarm()",1000)
+                alert('알람이설정되었습니다.');
+                alarmTimer=setInterval("formControl.myAlarm()",1000);
             }
         }
     }
