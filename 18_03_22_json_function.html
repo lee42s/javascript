@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Convert a string into a function.</h2>
+    
+    <p id="demo"></p>
+    
+    <script>
+    
+    var text = '{ "name":"John", "age":"function() {return 30;}", "city":"New York"}';
+    var obj = JSON.parse(text);
+    obj.age = eval("(" + obj.age + ")");//JSON함수을 실행할떄,eval() 은 문자로써 표현된 JavaScript 코드를 실행하는 메소드이다.
+    document.getElementById("demo").innerHTML = obj.name + ", " + obj.age(); 
+    
+    </script>
+</body>
+</html>

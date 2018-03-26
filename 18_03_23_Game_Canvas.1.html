@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid #d3d3d3;
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body onload="startGame()">
+    <script>
+        var myGamePiece = [];
+        var x, y, r, g, b, a;
+
+        function startGame() {
+            myGameArea.start();
+            for (var i = 0; i < 10; i++) {
+                x = getRandom(250);
+                y = getRandom(250);
+                r = getRandom(255);
+                g = getRandom(255);
+                b = getRandom(255);
+                myGamePiece[i] = new component(30, 30, "rgba(" + r + "," + g + "," + b + ",1)", x, y);
+                console.log(myGamePiece[i]);
+            }
+        }
+
+        function getRandom(math) {
+            return Math.floor(Math.random() * math);
+        }
+        var myGameArea = {
+            canvas: document.createElement("canvas"),
+            start: function () {
+                this.canvas.width = 480;
+                this.canvas.height = 270;
+                this.context = this.canvas.getContext("2d");
+                document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                this.interval = setInterval(updateGameArea, 20);
+            },
+            clear: function () {
+                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            }
+        }
+
+        function component(width, height, color, x, y) {
+            this.width = width;
+            this.height = height;
+            this.x = x;
+            this.y = y;
+            this.update = function(){
+                ctx = myGameArea.context;
+                ctx.fillStyle = color;
+                ctx.fillRect(this.x, this.y, this.width, this.height);
+            }
+        }
+
+        function updateGameArea() {
+            myGameArea.clear();
+            for(var i=0,len=myGamePiece.length;i<len;i++){
+               myGamePiece[i].update(); 
+               myGamePiece[i].x += 1; 
+               console.log( myGamePiece[i].x)
+               if(myGamePiece[i].x===400){
+                 myGamePiece[i].x = -1; 
+                 console.log( myGamePiece[i].x)
+               }
+            }
+            
+        }
+    </script>
+    <p>Make sure this window has focus, then you can use the arrow keys on you keyboard to move the red square.</p>
+</body>
+
+</html>

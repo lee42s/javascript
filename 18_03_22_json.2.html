@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Convert a JavaScript object into a JSON string, and send it to the server.</h2>
+    
+    <script>
+    var myObj, myJSON, text, obj;
+    
+    //Storing data:
+    myObj = { "name":"John", "age":31, "city":"New York" };
+    myJSON = JSON.stringify(myObj);
+    localStorage.setItem("testJSON", myJSON);
+    
+    //Retrieving data:
+    text = localStorage.getItem("testJSON");
+    obj = JSON.parse(text);
+    /*JSON.parse(text)은자바스크립트 값을 JSON 문자열로 변환하고, 리플레이서(replacer) 함수가 지정되어있을 때 선택적으로 바꾸거나, 
+    리플레이서 배열이 지정되어있을 때 지정된 속성만 선택적으로 포함할 수 있다.*/
+    document.getElementById("demo").innerHTML = obj.name;
+    
+    </script>
+</body>
+</html>
