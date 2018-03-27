@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        canvas {
+            border:1px solid #d3d3d3;
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body onload="startGame()">
+    <script>
+        var myGamePiece;// myGamePiece전역 변수 선언
+
+        function startGame() {
+            myGameArea.start();//myGameArea에 start함수 실행
+            myGamePiece = new component(30, 30, "red", 10, 120);//myGamePiece 변수에 함수component을 객체로 할당 및실행
+        }
+
+        var myGameArea = {
+            canvas: document.createElement("canvas"),//myGameArea.canvas 에 canvas라는 요소을 만든다
+            start: function () {
+                this.canvas.width = 480;//myGameArea.canvas에 넓이 을 480으로지정
+                this.canvas.height = 270;//myGameArea.canvas에 높이 을 270으로 지정
+                this.context = this.canvas.getContext("2d");//myGameArea.context 에 myGameArea.canvas.getContext("2d") 할당 getContext ()는 도면의 속성과 메소드로, 내장 된 HTML 개체입니다 
+                document.body.insertBefore(this.canvas, document.body.childNodes[0]);// html body 안에 canvas 요소 을 첫번째로 만든다
+                this.interval = setInterval(updateGameArea, 20);//myGameArea.interval 에 일정시간 간격으로 updateGameArea 함수을 실행
+                window.addEventListener('keydown', function (e) {//윈도우객체 키이벤트 을  KeyDown - 키보드를  눌렀지만 아직 해제 않지 않았을때 발생 
+                    myGameArea.key = e.keyCode;//myGameArea.key객체에 KeyDown 을 할당 한다.
+                })
+                window.addEventListener('keyup', function (e) {
+                    myGameArea.key = false; //만약 윈도우객체 키이벤트 가 keyup 일경우 myGameArea.key객체 에false 로 34~38행은 키보드 키 이벤트 검사 
+                })
+            },
+            clear: function () {
+                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);//myGameArea.clear 함수는 canvas 넓이480,높이270 을 만든다.
+            }
+        }
+
+        function component(width, height, color, x, y) {//component 함수 인자값 whdih:30,height30,color:red,x:10,y:120 
+            this.gamearea = myGameArea; //component.gamearea = myGameArea객체 할당
+            this.width = width;//component.width = 30;
+            this.height = height;//component.height =30;
+            this.speedX = 0;//component.speedX = 0;
+            this.speedY = 0;//component.speedY =0;
+            this.x = x;//component.x = 10;
+            this.y = y;//component.y=120;
+            this.update = function () {
+                ctx = myGameArea.context;//cxt= myGameArea.context:myGameArea.canvas.getContext("2d") 할당
+                ctx.fillStyle = color;//cxt.fillStyle = red;
+                ctx.fillRect(this.x, this.y, this.width, this.height);//ctx.fiilRect(10,120,30,30) canvas 만에 높이30,넓이30,색은 레드 인 상자을 만든다.
+            }
+            this.newPos = function () {// component.newPos 함수
+                this.x += this.speedX;//component.x = component.speedX:0
+                this.y += this.speedY;//component.y = component.speedY:0
+            }
+        }
+
+        function updateGameArea() {
+            myGameArea.clear();//canvas 넓이480,높이270 을 만든다.
+            myGamePiece.speedX = 0;
+            myGamePiece.speedY = 0;
+            if (myGameArea.key && myGameArea.key == 37) {//myGameArea.key 값이 37: 오른쪽일때만
+                myGamePiece.speedX = -1;// concomponent 속도을 -1로 지정
+            }
+            if (myGameArea.key && myGameArea.key == 39) {//myGameArea.key 값이 39: 왼쪽일때만
+                myGamePiece.speedX = 1;// concomponent 속도을 1로 지정
+            }
+            if (myGameArea.key && myGameArea.key == 38) {//myGameArea.key 값이 38: 위쪽일때만
+                myGamePiece.speedY = -1;// concomponent 속도을 -1로 지정
+            }
+            if (myGameArea.key && myGameArea.key == 40) {//myGameArea.key 값이 40: 아래일때만
+                myGamePiece.speedY = 1;// concomponent 속도을 1로 지정
+            }
+            myGamePiece.newPos();//cacanvas 안에 이동하는 위치을 지정
+            myGamePiece.update();//ctx.fiilRect(10,120,30,30) canvas 만에 높이30,넓이30,색은 레드 인 상자을 만든다.
+        }
+    </script>
+    <p>Make sure this window has focus, then you can use the arrow keys on you keyboard to move the red square.</p>
+</body>
+
+</html>

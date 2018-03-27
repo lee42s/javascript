@@ -27,12 +27,17 @@
     <script>
     function cal(num){
         if (num === num)
+        var dateType= typeof(num);
+        console.log(dateType);
 		contant.value += num;
 	}
     function answer(){
 		try{
-			contant.value = eval(contant.value);//eval 은 문자로된 연산수식을 숫자 연산식으로 반환한다.
-		}catch(e){alert('잘못된 연산오류 ㅋ')}
+            contant.value = eval(contant.value);//eval 은 문자로된 연산수식을 숫자 연산식으로 반환한다.
+        }catch(e){
+            alert('잘못된 연산 오류입니다.');
+            document.reload();
+        }
 	}
 	function clearcal(){
 		contant.value = "";
