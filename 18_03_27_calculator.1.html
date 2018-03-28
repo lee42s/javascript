@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>계산기</title>
+    <style type="text/css">
+        .txtalign {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <form name="calc">
+        <table border=1 width=200px height=200px cellpadding=0 cellspacing=0 align=center>
+
+            <tr border=2>
+                <!-- 숫자표시창 -->
+                <td colspan=5 align=center>
+                    <input type=text name="txtcalc" disabled>
+                </td>
+            </tr>
+            <tr border=2>
+                <!-- 숫자표시창 -->
+                <td colspan=5 align=center>
+                    <input type=text name="txt" disabled class=txtalign>
+                </td>
+            </tr>
+            <tr height=40px>
+                <!-- 백스페이스, C -->
+                <td colspan=5>
+                    <table border=1 width=100%>
+                        <tr align=center>
+                            <td width=33%>
+                                <input type=button value='BackSpace' style="width:100%;" onclick=bs()>
+                            </td>
+                            <td width=33%>
+                                <input type=button value='C' style="width:100%;" onclick=clearcal()>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr align=center>
+                <td width=25%>
+                    <input type=button value='  1  ' onclick="cal('1')">
+                </td>
+                <td width=25%>
+                    <input type=button value='  2  ' onclick="cal('2')">
+                </td>
+                <td width=25%>
+                    <input type=button value='  3  ' onclick="cal('3')">
+                </td>
+                <td width=25%>
+                    <input type=button value='  /  ' onclick="cal('/')">
+                </td>
+            </tr>
+            <tr align=center>
+                <td>
+                    <input type=button value='  4  ' onclick="cal('4')">
+                </td>
+                <td>
+                    <input type=button value='  5  ' onclick="cal('5')">
+                </td>
+                <td>
+                    <input type=button value='  6  ' onclick="cal('6')">
+                </td>
+                <td>
+                    <input type=button value='  *  ' onclick="cal('*')">
+                </td>
+            </tr>
+            <tr align=center>
+                <td>
+                    <input type=button value='  7  ' onclick="cal('7')">
+                </td>
+                <td>
+                    <input type=button value='  8  ' onclick="cal('8')">
+                </td>
+                <td>
+                    <input type=button value='  9  ' onclick="cal('9')">
+                </td>
+                <td>
+                    <input type=button value='  +  ' onclick="cal('+')">
+                </td>
+            </tr>
+            <tr align=center>
+                <td>
+                    <input type=button value='  =  ' onclick="answer()">
+                </td>
+                <td>
+                    <input type=button value='  0  ' onclick="cal('0')">
+                </td>
+                <td>
+                    <input type=button value='  .  ' onclick="cal('.')">
+                </td>
+                <td>
+                    <input type=button value='  -  ' onclick="cal('-')">
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script type="text/javascript">
+        var keycode = event.keyCode;
+
+        function cal(num) {
+            calc.txt.value += num;
+        }
+
+        function answer() {
+            calc.txt.value = eval(document.calc.txt.value);
+
+            // document.calc.txt.value 에 저장된 문자열을
+            // 자바스크립트코드로 실행
+        }
+
+        function operator() {
+
+        }
+        //onkeydown - 모든 키를 눌렀을때(shift, alt, control, capslock 등의 키도 모두 인식한다. 단 한영변환, 한자 등의 특수키는 인식못함.)
+        //onkeyup - 모든 키를 눌렀다 땠을때(onkeydown 에서 인식하는 키들을 인식)
+        //onkeypress - 실제로 글자가 써질때 (shift, enter 같은 키는 인식하지 못한다)
+
+        function enter(eql) {
+            if (event.keyCode == 13) {
+                answer();
+            }
+        }
+
+        function clearcal() {
+            calc.txt.value = "";
+            // 텍스트창 초기화
+        }
+
+        function bs() {
+            calc.txt.value = calc.txt.value.substring(0, calc.txt.value.length - 1);
+            // substring 으로 0부터 value 길이에서 -1 한 만큼의 길이를 출력한다
+        }
+    </script>
+</body>
+
+</html>

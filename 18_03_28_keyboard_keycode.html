@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" onKeyDown="num.value=event.keyCode;event.returnValue=false"> :
+    <input type="text" id="num">
+    숫자입력 : <input type="text" onKeyDown="onlyNumber(this);">
+    <script>
+        function onlyNumber(target) {
+            keynum = event.keyCode;
+            if ((keynum < 48 || keynum > 57) && (keynum != 144 && keynum != 13 && keynum != 32 && keynum != 9 && keynum !=
+                    35 && keynum != 36 && keynum != 45 && keynum != 46 && keynum != 8) && (keynum < 96 || keynum > 105) &&
+                (keynum < 37 || keynum > 40)) {
+                alert("숫자가 아닙니다.");
+                target.focus();
+                event.returnValue = false;
+            } else
+                return true;
+        }
+    </script>
+</body>
+
+</html>

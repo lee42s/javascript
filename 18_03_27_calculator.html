@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>계산기</title>
+    <style>
+        canvas {
+            border: 1px solid #d3d3d3;
+            background-color: #f1f1f1;
+            text-align:
+        }
+
+        ;
+    </style>
+</head>
+
+<body>
+    <h1>계산기</h1>
+    <input id='contant' type="text" onKeyDown="keyboard()">
+    <button id='zero' value="0" onclick="cal('0')" type="button">0</button><!--이벤트 10점-->
+    <button id='one' value="1" onclick="cal('1')" type="button">1</button>
+    <button id='to' value="2" onclick="cal('2')" type="button">2</button>
+    <button id='wr' value="3" onclick="cal('3')" type="button">3</button>
+    <button id='fo' value="4" onclick="cal('4')" type="button">4</button>
+    <button id='fi' value="5" onclick="cal('5')" type="button">5</button>
+    <button id='re' value="6" onclick="cal('6')" type="button">6</button>
+    <button id='ve' value="7" onclick="cal('7')" type="button">7</button>
+    <button id='be' value="8" onclick="cal('8')" type="button">8</button>
+    <button id='ni' value="9" onclick="cal('9')" type="button">9</button>
+    <button id='operator' value="+" onclick="cal('+')" type="button">+</button>
+    <button id='operator1' value="-" onclick="cal('-')" type="button">-</button>
+    <button id='operator2' value="/" onclick="cal('/')" type="button">/</button>
+    <button id='operator2' value="%" onclick="cal('%')" type="button">%</button>
+    <button id='operator3' value="*" onclick="cal('*')" type="button">*</button>
+    <input type=button value='BackSpace' onclick=bs()>
+    <button id='operator3' onclick="clearcal()" type="button">C</button>
+    <button id='submit' onclick="result.answer()" type="submit">=</button>
+    <script>
+        var keyCode = []; //array 10점
+        function cal(num) {
+            if (num === num)
+                contant.value += num;
+        }
+        var result = { //method 10점
+            answer: function () {
+                switch (contant.value) { //switch 10점
+                    case contant.value:
+                        contant.value = eval(contant.value); //eval 은 문자로된 연산수식을 숫자 연산식으로 반환한다.10점
+                        break;
+                }
+            }
+        }
+        function keyboard() {
+            for (var i = 0; i < 150; i++) { //loop 10점
+                keyCode.num = i
+                switch (keyCode.num) {
+                    case 13:
+                        if (event.keyCode === keyCode.num) {
+                            result.answer()
+                        }
+                        break;
+                }
+            }
+        }
+        function clearcal() {//CA(clear all)10점
+            contant.value = "";
+        }
+        function bs() {//BS(back space)
+            contant.value = contant.value.substring(0, contant.value.length - 1)
+        }
+    </script>
+</body>
+
+</html>
